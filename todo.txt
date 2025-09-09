@@ -1,0 +1,9 @@
+Done today 9/7/25
+
+Project struc setup, still need to fill in Dockerfile and touch up where needed.
+npm init, ts and express installed
+barebones server running on localhost
+
+Pick up here next time
+- Work on middleware, db connection, POST route and test db connection with html form data.
+

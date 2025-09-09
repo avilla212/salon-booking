@@ -1,0 +1,50 @@
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# TypeScript build output
+dist/
+build/
+
+# Logs
+*.log
+logs/
+*.pid
+*.seed
+*.pid.lock
+
+# Environment variables
+.env
+.env.*          # e.g. .env.local, .env.production
+
+# OS / editor junk
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Docker
+*.pid
+*.seed
+.docker/
+.dockerignore
+
+# Coverage / testing
+coverage/
+.nyc_output/
+
+# Optional frontend build artifacts
+frontend/dist/
+frontend/.next/
+frontend/out/
+
+# Lock files (if you switch between managers, only keep one)
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+

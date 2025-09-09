@@ -1,0 +1,106 @@
+==============================
+HOW TO GET DOCKER RUNNING
+==============================
+
+1. Write a Dockerfile to define your app environment.
+  - The dockerfile is like a recipe that explains how to build an image of your app.
+  
+  # start with a base image
+  FROM node:18
+
+  # set working directory
+  WORKDIR /app
+
+  # copy files into container
+  COPY package*.json .
+  RUN npm install
+  COPY . .
+
+  # expose the port your app runs on
+  EXPOSE 3000
+
+  # command to start app
+  CMD ["npm", "start"]
+
+2. Build the image
+  - Turn your dockerfile into an image
+    docker build -t myapp .
+    -t myapp gives the image a name
+    . tells docker to use the dockerfile in the current directory
+
+3. Once the iamge is built, run a container
+  - docker run -p 8080:3000 myapp
+    -p 8080:3000 maps port 8080 on your host to port 3000 in the container
+    myapp is the name of the image to run
+
+===============================
+ DOCKER CHEAT SHEET
+===============================
+
+🔍 CHECKING DOCKER INFO
+-------------------------------
+docker --version               # Show Docker version
+docker info                    # Show system-wide info
+docker ps                      # List running containers
+docker ps -a                   # List all containers (running + stopped)
+docker images                  # List all images
+docker volume ls               # List all volumes
+docker network ls              # List all networks
+
+▶️ RUNNING CONTAINERS
+-------------------------------
+docker run <image>             # Run a container from an image
+docker run -it <image> bash    # Run interactively with bash
+docker run -d <image>          # Run in background (detached)
+docker run -p 8080:80 <image>  # Map port 8080 on host -> 80 in container
+docker run -v $(pwd):/app <image>   # Mount current folder to /app in container
+docker exec -it <container> bash    # Open shell inside running container
+
+⏹️ MANAGING CONTAINERS
+-------------------------------
+docker stop <container>        # Stop a container
+docker start <container>       # Start a stopped container
+docker restart <container>     # Restart a container
+docker logs <container>        # Show logs from container
+docker rm <container>          # Remove a stopped container
+docker rm -f <container>       # Force remove a running container
+
+🖼️ WORKING WITH IMAGES
+-------------------------------
+docker pull <image>            # Download an image from Docker Hub
+docker build -t myapp .        # Build image from Dockerfile in current dir
+docker rmi <image>             # Remove an image
+docker rmi $(docker images -q) # Remove all images
+docker tag <image> myrepo/myapp:1.0   # Tag image
+docker push myrepo/myapp:1.0          # Push image to Docker Hub
+
+📦 VOLUMES & DATA
+-------------------------------
+docker volume create mydata    # Create a named volume
+docker volume inspect mydata   # Inspect volume details
+docker volume rm mydata        # Remove a volume
+docker run -v mydata:/var/lib/mysql mysql   # Persist MySQL data in volume
+
+🌐 NETWORKING
+-------------------------------
+docker network ls              # List networks
+docker network create mynet    # Create a custom network
+docker network connect mynet <container>   # Attach container to network
+docker network rm mynet        # Remove a network
+
+🧹 CLEANING UP
+-------------------------------
+docker system prune            # Remove stopped containers, unused networks, dangling images
+docker system prune -a         # Remove ALL unused images + containers
+docker system prune -a --volumes   # Remove everything including volumes
+
+📝 INSPECT & DEBUG
+-------------------------------
+docker inspect <container>     # Detailed container info (JSON)
+docker stats                   # Show real-time CPU/mem usage of containers
+docker top <container>         # Show running processes inside container
+docker diff <container>        # Show file changes inside container
+
+===============================
+ END OF CHEAT SHEET
+===============================
