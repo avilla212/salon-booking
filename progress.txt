@@ -1,0 +1,25 @@
+how we auto refresh
+- "scripts": {
+    "dev": "tsx watch src/server.ts",
+    "build": "tsc",
+    "start": "node dist/srever.js"
+  }
+- tsx watch src/server.ts
+  - tsx is a tool that runs TypeScript files directly (no need to compile)
+  - the watch flag makes it restart automatically whenever you save changes to .ts files
+- could also use npx nodemon src/server.ts or ts-node-dev
+
+app.ts (9-9-25)
+- Middleware 
+  - express.json({ limit:"32kb" }) we are telling express for any requests with Contnent-Type: application/json, parse the body as JSON, but only allow bodies up to 32kb
+
+  - Helmet can Add, modify, or remove HTTP response headers
+  - These headers tell browsers how to behave in ways that reduce attack surface
+  - app.use(helmet());
+    - helmet registers a series of middlewares that hook into the Express response cycle
+
+
+- Tested endpoints with curl
+  - GET /health -> quick liveness checks for dev, Docker health checks etc ...
+  - GET /slots -> stub for read only availability endpoint
+  - POST /appointments -> stub for creating an appointment( will later validate input, create tokens, insert DB rows)
